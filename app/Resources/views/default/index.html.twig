@@ -25,7 +25,7 @@
                 <tbody>
                 {% for task in tasks %}
                     <tr>
-                        <td><a href="" class="btn btn-success">Show</a></td>
+                        <td><a href="{{ path('task', {'id': task.id }) }}" class="btn btn-success">Show</a></td>
                         <td>{{ task.name }}</td>
                         <td>{{ task.priority.value }}</td>
                         <td>{{ task.status.value }}</td>

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}Task Details{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <i class="fa fa-info"></i>
+                    <h3 class="box-title">{{ task.name }}</h3>
+                    <h3 class="box-title  pull-right">
+                        {% if task.status.id == 1 %}
+                            {% set statusLabelClass = 'default' %}
+                        {% elseif task.status.id == 2 %}
+                            {% set statusLabelClass = 'info' %}
+                        {% elseif task.status.id == 3 %}
+                            {% set statusLabelClass = 'success' %}
+                        {% elseif task.status.id == 4 %}
+                            {% set statusLabelClass = 'warning' %}
+                        {% endif %}
+                        <span class="label label-{{ statusLabelClass }}">{{ task.status.value }}</span>
+                    </h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <dl>
+                        <dt>
+                            Description
+                        </dt>
+                        <dd>
+                            {{ task.description }}
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            Due Date
+                        </dt>
+                        <dd>
+                            {% if task.dueDate.date|date('Y-m-d H:i:s') > "now"|date('Y-m-d H:i:s') %}
+                                {% set dueDateTextColor = 'black' %}
+                            {% else %}
+                                {% set dueDateTextColor = 'red' %}
+                                {% set isOverdue = 1 %}
+                            {% endif %}
+                            <span class="text-{{ dueDateTextColor }}">
+                            {{ task.dueDate.date | date('Y-m-d H:i:s') }}
+                             </span>
+
+                            {% if isOverdue %}
+                                <span class="label label-danger">Warning! This task is overdue.</span>
+                            {% endif %}
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            Mates involved
+                        </dt>
+                        <dd>
+                            <ul>
+                                {% for user in task.users %}
+                                    <li>
+                                        {{ user.username }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </dd>
+                    </dl>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+{% endblock %}

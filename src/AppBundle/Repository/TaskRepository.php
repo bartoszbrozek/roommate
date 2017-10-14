@@ -1,7 +1,9 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use Doctrine\ORM\NoResultException;
+
 /**
  * TaskRepository
  *
@@ -22,6 +24,25 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
 
         try {
             return $query->getResult();
+        } catch (NoResultException $e) {
+            return null;
+        }
+
+    }
+
+    public function getSingleTaskById($id)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT t, p, s, u FROM AppBundle:Task t 
+                     JOIN t.priority p
+                     JOIN t.status s
+                     JOIN t.users u
+                     WHERE t.id = :id'
+            )->setParameter('id', $id);
+
+        try {
+            return $query->getSingleResult();
         } catch (NoResultException $e) {
             return null;
         }

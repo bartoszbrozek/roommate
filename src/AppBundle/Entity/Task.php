@@ -65,6 +65,11 @@ class Task
         $this->users = new ArrayCollection();
     }
 
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
     /**
      * Get id
      *

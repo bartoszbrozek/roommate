@@ -3,13 +3,15 @@
 {% block header %}Dashboard{% endblock %}
 
 {% block body %}
-
     {#Datatable with tasks#}
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">All Tasks</h3>
+            <a href="{{ path('taskCreate') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> New
+                Task</a>
         </div>
         {% dump(tasks) %}
+
         <!-- /.box-header -->
         <div class="box-body">
             <table id="tasks" class="table table-bordered table-striped">
@@ -25,7 +27,7 @@
                 <tbody>
                 {% for task in tasks %}
                     <tr>
-                        <td><a href="{{ path('task', {'id': task.id }) }}" class="btn btn-success">Show</a></td>
+                        <td><a href="{{ path('task', {'id': task.id }) }}" class="btn btn-info">Show</a></td>
                         <td>{{ task.name }}</td>
                         <td>{{ task.priority.value }}</td>
                         <td>{{ task.status.value }}</td>

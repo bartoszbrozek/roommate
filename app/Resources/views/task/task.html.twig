@@ -49,7 +49,7 @@
                             {{ task.dueDate.date | date('Y-m-d H:i:s') }}
                              </span>
 
-                            {% if isOverdue %}
+                            {% if isOverdue is defined %}
                                 <span class="label label-danger">Warning! This task is overdue.</span>
                             {% endif %}
                         </dd>

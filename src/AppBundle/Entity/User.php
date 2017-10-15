@@ -21,8 +21,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Task", inversedBy="users")
-     * @ORM\JoinTable(name="users_tasks")
+     * @ORM\ManyToMany(targetEntity="Task", mappedBy="users")
      */
     private $tasks;
 

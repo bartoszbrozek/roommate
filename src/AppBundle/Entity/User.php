@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
@@ -29,5 +29,9 @@ class User extends BaseUser
     {
         $this->tasks = new ArrayCollection();
         parent::__construct();
+    }
+
+    public function getTasks() {
+        return $this->tasks;
     }
 }

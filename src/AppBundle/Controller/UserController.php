@@ -2,24 +2,24 @@
 
 namespace AppBundle\Controller;
 
-use Facebook\Facebook;
-use Facebook\Exceptions;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
+use AppBundle\Entity\User;
 
 class UserController extends Controller
 {
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/user/show/{id}", name="user")
      */
-//    public function indexAction(Request $request)
-//    {
-//        return $this->render('FOSUserBundle/views/layout.html.twig', [
-//
-//        ]);
-//    }
+    public function indexAction(Request $request, $id)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)
+            ->getSingleUserById($id);
+        return $this->render('user/user.html.twig', [
+            'user' => $user
+        ]);
+    }
 
 }

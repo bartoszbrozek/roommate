@@ -319,11 +319,37 @@ desired effect
             'ordering': true,
             'info': true,
             'autoWidth': false,
-            "order": [[ 4, "desc" ]],
+            "order": [[4, "desc"]],
             "columnDefs": [
-                { orderable: false, targets: 0 }
+                {orderable: false, targets: 0}
             ]
-        })
+        });
+
+        $('#users').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            "order": [[1, "desc"]],
+            "columnDefs": [
+                {orderable: false, targets: 0}
+            ]
+        });
+
+        $('#userTask').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            "order": [[1, "desc"]],
+            "columnDefs": [
+                {orderable: false, targets: 0}
+            ]
+        });
     })
 </script>
 </body>

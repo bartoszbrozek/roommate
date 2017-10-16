@@ -46,6 +46,5 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
         } catch (NoResultException $e) {
             return null;
         }
-
     }
 }

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class  TaskController extends Controller
+class TaskController extends Controller
 {
 
     /**
@@ -86,13 +86,13 @@ class  TaskController extends Controller
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-            $em->remove($task);
-            $em->flush();
+        $em->remove($task);
+        $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Task removed successfully');
-            return $this->redirectToRoute('index');
+        $request->getSession()->getFlashBag()->add('success', 'Task removed successfully');
+        return $this->redirectToRoute('index');
 
 
     }

@@ -16,22 +16,8 @@
                 <!-- /.box-header -->
                 <div class="box-body">
 
-                    <dl>
-                        <dt>
-                            User's tasks
-                        </dt>
-                        <dd>
-                            <ul>
-                                {% for task in user.tasks %}
-                                    <li>
-                                        {{ task.name }}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </dd>
-                    </dl>
-
                     <div class="box-body">
+                        <h4>User's tasks</h4>
                         <table id="userTask" class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -49,7 +35,7 @@
                                     <td>
                                         {% for userInTask in task.users %}
                                             {% if userInTask.username != user.username %}
-                                                {{ userInTask.username }}
+                                                <a href="{{ path('user', {'id':userInTask.id}) }}" class="btn btn-sm btn-default">{{ userInTask.username }}</a>
                                             {% endif %}
                                         {% endfor %}
                                     </td>

@@ -10,7 +10,7 @@
                 <div class="box-header with-border">
                     <i class="fa fa-info"></i>
                     <h3 class="box-title">{{ task.name }}</h3>
-                    <h3 class="box-title  pull-right">
+
                         {% if task.status.id == 1 %}
                             {% set statusLabelClass = 'default' %}
                         {% elseif task.status.id == 2 %}
@@ -21,7 +21,11 @@
                             {% set statusLabelClass = 'warning' %}
                         {% endif %}
                         <span class="label label-{{ statusLabelClass }}">{{ task.status.value }}</span>
-                    </h3>
+
+                    <a href="{{ path('taskDelete', {'id':task.id}) }}" class="btn btn-danger pull-right">
+                        <i class="fa fa-remove"></i> Remove</a>
+                    <a href="{{ path('taskUpdate', {'id':task.id}) }}" class="btn btn-success pull-right">
+                        <i class="fa fa-edit"></i> Edit</a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
